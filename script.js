@@ -20,25 +20,20 @@ envelope.addEventListener("click", () => {
     },50);
 });
 
-// Logic to make YES btn to grow 
+// Logic to move the NO btn
 
-let yesScale = 1;
+noBtn.addEventListener("mouseover" , () => {
+    const min = 200;
+    const max = 200;
 
-yesBtn.style.position = "relative"
-yesBtn.style.transformOrigin = "center center";
-yesBtn.style.transition = "transform 0.3s ease";
+    const distance = Math.random() * (max - min) + min;
+    const angle = Math.random() * Math.PI * 2;
 
-noBtn.addEventListener("click", () => {
-    yesScale += 2;
+    const moveX = Math.cos(angle) * distance;
+    const moveY = Math.sin(angle) * distance;
 
-    if (yesBtn.style.position !== fixed) {
-        yesBtn.style.position ="fixed";
-        yesBtn.style.top = "50%";
-        yesBtn.style.left = "50%";
-        yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-    }else{
-        yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-    }
+    noBtn.style.transition = "transform 0.3s ease";
+    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
 
 // YES is clicked
